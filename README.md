@@ -42,7 +42,7 @@ npm run dev
 - React Router
 
 ## 🌐 Live Demo  
-[https://acm-pccoer.vercel.app](https://acm-pccoer.vercel.app)
+[https://acmx-pccoer-remake.vercel.app/](https://acmx-pccoer-remake.vercel.app/)
 
 ## 📄 License  
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
