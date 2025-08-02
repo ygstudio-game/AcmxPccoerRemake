@@ -6,6 +6,7 @@ const blogs = [
     author: "Omkar Ghotekar",
     date: "2023-6-14",
     content: "In this comprehensive comparison, we explore both development paths... (full article content)"
+    
   },
   {
     image: "https://pccoer.acm.org/blogpic/aug.png",
@@ -16,7 +17,8 @@ const blogs = [
     content: "The lines between physical and digital reality are blurring... (detailed analysis of VR/AR trends)"
   },
   {
-    image: "https://pccoer.acm.org/blogpic/cas.png",    title: "Casting Intelligence",
+    image: "https://pccoer.acm.org/blogpic/cas.png",    
+    title: "Casting intelligence",
     description: "Exploring the future of casting and prototyping through concepts like 4D printing and 'casting intelligence' for self-transforming materials.",
     author: "Chaitanya Kamble",
     date: "2023-8-4",

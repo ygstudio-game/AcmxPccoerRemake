@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiCalendar, FiUser, FiArrowUpRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import blogs from "../data/blogs";
 
 
 const BlogCard = ({ blog, index }) => (
@@ -76,32 +77,7 @@ const BlogCard = ({ blog, index }) => (
 );
 
 const BlogsSection = () => {
-  const blogs = [
-    {
-      image: "https://pccoer.acm.org/blogpic/avsw.png",
-      title: "Android Development VS Web Development | Reality",
-      description: "An insightful guide comparing Web and Android development based on learning curve, placements, deployment, system requirements, demand, and salary prospects.",
-      author: "Omkar Ghotekar",
-      date: "2023-6-14",
-      link: "https://pccoer.acm.org/Blog/androidvsweb"
-    },
-    {
-      image: "https://pccoer.acm.org/blogpic/aug.png",
-      title: "Augmenting The Virtual",
-      description: "Exploring the future of VR and AR and their revolutionary applications in gaming, education, and beyond.",
-      author: "Aman Hanspal",
-      date: "2024-11-27",
-      link: "https://pccoer.acm.org/Blog/augmenting_the_virtual"
-    },
-    {
-      image: "https://pccoer.acm.org/blogpic/cas.png",
-      title: "Casting intelligence",
-      description: "Exploring the future of casting and prototyping through concepts like 4D printing and 'casting intelligence' for self-transforming, decision-making materials.",
-      author: "Chaitanya Kamble",
-      date: "2023-8-4",
-      link: "https://pccoer.acm.org/Blog/casting_intelligence"
-    }
-  ];
+ 
 
   return (
   <section id="blogs" className="py-24 px-4 bg-gradient-to-b from-[#050b1b] to-[#0a1126] relative overflow-hidden">

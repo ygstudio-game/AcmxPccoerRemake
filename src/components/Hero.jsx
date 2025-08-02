@@ -224,19 +224,33 @@ const HeroSection = () => {
               </span>
             </motion.div>
             
-            {/* Title */}
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 text-white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.7 } }}
-            >
-              <div className="mb-3 sm:mb-4">
-                {renderAnimatedText("Advancing Computing")}
-              </div>
-              <div>
-                {renderAnimatedText("as a Science & Profession")}
-              </div>
-            </motion.h1>
+<motion.h1 
+  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 text-white"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1, transition: { delay: 0.2, duration: 0.7 } }}
+>
+  <div className="mb-3 sm:mb-4">
+    {renderAnimatedText("Advancing ")}
+    <br />
+   {renderAnimatedText("Computing")}
+
+    <video 
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="inline-block w-20 h-20 md:w-32 md:h-32 align-middle mx-2 rounded-lg overflow-hidden border border-white/10 "
+      style={{ verticalAlign: 'middle' }}
+    >
+      <source src="https://pccoer.acm.org/ACM%20Video.mp4" type="video/mp4" />
+    </video>
+   </div>
+  <div>
+    <br />
+    {renderAnimatedText("As a Science ")}
+    {renderAnimatedText("& Profession")}
+  </div>
+</motion.h1>
             
             {/* Subtitle */}
             <motion.p 

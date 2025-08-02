@@ -10,17 +10,37 @@ const Navbar = () => {
   const sectionRefs = useRef({});
 
   // Handler for smooth scrolling
-  const scrollToSection = (id) => {
-    setActiveLink(id);
-    setIsMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  };
+  // const scrollToSection = (id) => {
+  //   setIsMenuOpen(false);
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     const offset = window.innerWidth < 1024 ? 100 : 80; // Adjust for mobile header height
+  //     window.scrollTo({
+  //       top: element.offsetTop - offset,
+  //       behavior: 'smooth'
+  //     });
+      
+  //   }
+  // };
+const scrollToSection = (id) => {
+  setIsMenuOpen(false);
+
+  // Check if we're on a different page
+  if (location.pathname !== '/') {
+    // Navigate to home page first
+    window.location.href = `/#${id}`;
+    return;
+  }
+
+  const element = document.getElementById(id);
+  if (element) {
+    const offset = window.innerWidth < 1024 ? 100 : 80;
+    window.scrollTo({
+      top: element.offsetTop - offset,
+      behavior: 'smooth'
+    });
+  }
+};
 
   // Track scroll position for navbar style
   useEffect(() => {
@@ -203,63 +223,53 @@ const Navbar = () => {
       </div>
 
 <AnimatePresence>
-  {isMenuOpen && (
-    <motion.div 
-      className="lg:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg"
-      initial={{ opacity: 0, height: 0, overflow: 'hidden' }}
-      animate={{ 
-        opacity: 1, 
-        height: 'auto',
-        transition: { 
-          opacity: { duration: 0.2 },
-          height: { type: "spring", damping: 25, stiffness: 300 } 
-        } 
-      }}
-      exit={{ 
-        opacity: 0, 
-        height: 0,
-        transition: { 
-          opacity: { duration: 0.2 }, 
-          height: { ease: "easeIn", duration: 0.3 } 
-        } 
-      }}
-    >
-      <div className="px-4 pt-2 pb-4 space-y-1 sm:px-6 border-t border-gray-200/50 dark:border-gray-700/50">
-                      {navLinks.map((link) => (
-                <motion.div
-                  key={link.id}
-                  className={`px-3 py-3 rounded-lg text-lg font-medium relative cursor-pointer ${
-                    activeLink === link.id 
-                      ? 'bg-blue-50/50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
-                      : 'text-gray-700 dark:text-gray-300'
-                  }`}
-                  onClick={() => scrollToSection(link.id)}
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ 
-                    x: 0, 
-                    opacity: 1,
-                    transition: { duration: 0.3 } 
-                  }}
-                  whileHover={{ 
-                    backgroundColor: 'rgba(0,0,0,0.05)',
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  {link.label}
-                  {activeLink === link.id && (
-                    <motion.div 
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-r-lg"
-                      initial={{ height: 0 }}
-                      animate={{ height: '100%' }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </motion.div>
-              ))}
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg w-full max-w-xs absolute right-0 top-0 h-screen"
+              initial={{ x: 300 }}
+              animate={{ x: 0 }}
+              exit={{ x: 300 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="px-4 pt-4 pb-8 space-y-2 sm:px-6">
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="p-2 hover:bg-gray-200/50 dark:hover:bg-gray-700/50 rounded-lg"
+                  >
+                    <FiX className="h-6 w-6" />
+                  </button>
+                </div>
+                {navLinks.map((link) => (
+                  <motion.div
+                    key={link.id}
+                    className={`px-3 py-3 rounded-lg text-lg font-medium relative cursor-pointer ${
+                      activeLink === link.id 
+                        ? 'bg-blue-50/50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
+                        : 'text-gray-700 dark:text-gray-300'
+                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    {link.label}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

@@ -261,3 +261,22 @@ body {
 .animate-shimmer {
   animation: shimmer 2s linear infinite;
 }
+.blog-content h2 {
+  @apply text-2xl font-semibold mt-8 mb-4;
+}
+
+.blog-content h3 {
+  @apply text-xl font-medium mt-6 mb-3;
+}
+
+.blog-content p {
+  @apply mb-4 leading-relaxed;
+}
+
+.blog-content ul {
+  @apply list-disc pl-6 mb-6;
+}
+
+.blog-content li {
+  @apply mb-2;
+}
