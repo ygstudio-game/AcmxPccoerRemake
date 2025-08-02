@@ -322,26 +322,46 @@ const TeamSection = () => {
           </div>
         </div>
 
-        {/* Interactive Tabs */}
-        <div className="flex justify-center mb-14">
-          <div className="inline-flex rounded-full p-2 bg-slate-800/40 backdrop-blur-lg shadow-lg">
-            {tabs.map((tab) => (
-              <motion.button
-                key={tab}
-                onClick={() => handleTabClick(tab)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all mx-1 ${
-                  activeTab === tab
-                    ? 'bg-blue-500 text-white shadow-md'
-                    : 'text-blue-200 hover:bg-slate-700/30'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </motion.button>
-            ))}
-          </div>
-        </div>
+{/* Interactive Tabs */}
+<div className="flex justify-center mb-10 px-4">
+  <div className="flex md:inline-flex flex-nowrap gap-1 rounded-full p-1 bg-slate-900/60 backdrop-blur-xl shadow-2xl overflow-x-auto max-w-full scrollbar-thin scrollbar-thumb-blue-500/60 scrollbar-track-transparent snap-x snap-mandatory border border-slate-700/50 relative">
+    
+    {tabs.map((tab) => (
+      <motion.button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={`relative px-6 py-3 shrink-0 rounded-full text-sm font-medium transition-colors duration-300 snap-start whitespace-nowrap z-10 ${
+          activeTab === tab
+            ? 'text-white'
+            : 'text-blue-300 hover:text-white'
+        }`}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {/* Glowing background when active */}
+        {activeTab === tab && (
+          <motion.span
+            layoutId="activeTab"
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 shadow-lg shadow-blue-500/30 z-0"
+            initial={false}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          />
+        )}
+        
+        {/* Tab Label */}
+        <span className="relative z-10 font-semibold">
+          {tab.charAt(0).toUpperCase() + tab.slice(1)}
+        </span>
+      </motion.button>
+    ))}
+
+    {/* Glass overlay enhancement */}
+    <div className="absolute inset-0 rounded-full bg-white/5 pointer-events-none z-0" />
+  </div>
+</div>
+
+
+
 
         {/* Team Cards Grid */}
         <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
