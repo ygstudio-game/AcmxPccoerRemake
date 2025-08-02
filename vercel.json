@@ -1,18 +1,3 @@
 {
-  "routes": [
-    { 
-      "src": "/blogs/.*", 
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "s-maxage=0, stale-while-revalidate=60"
-      }
-    },
-    { 
-      "src": "/(.*)", 
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "public, s-maxage=3600"
-      }
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
